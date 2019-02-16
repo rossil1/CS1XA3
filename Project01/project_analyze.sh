@@ -1,4 +1,9 @@
 #!/bin/bash
+
+if [ ! -d logs ]; then
+    mkdir logs
+fi
+
 cd ..
 
 while [ 1 ] #TODO - look at new features to put into the file
