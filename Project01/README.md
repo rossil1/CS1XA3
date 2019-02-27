@@ -36,7 +36,12 @@ report gives a bit more per match, with the notation:
 
        hashcode - authorName, dateOfCommit : commitMessage
 
+## Todo Log Compilation
+   The script searches recursively from the parent folder through all child folders for parts of the code marked 'todo' directly following the initial comment flag.
 
+## Move to Another Folder
+   The final method is available to make the resources of this script useful in a user's own project. The user is asked for the path to the parent folder, if there are no mistakes and the directory exists the script creates a 'diagnostics' directory and recreates the script in that directory. At the end of the method, the user is asked if they'd like to continue to use the script in the new location they've specificed.
+   
 ## Exit
    As the script is set within an infinite loop, when exit is
 selected the script breaks from the loop and ends the script.
