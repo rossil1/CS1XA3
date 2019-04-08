@@ -19,5 +19,6 @@ from django.urls import path, include
 root="e/rossil1/"
 
 urlpatterns = [
-    path(root, include('testreq.urls')),
+    path(root + 'testreq/', include('testreq.urls')),
+    path(root + 'tempapp/', include('tempapp.urls')),
 ]
