@@ -32,13 +32,13 @@ encode model =
     JEncode.object
         [ ( "username", JEncode.string model.user )
         , ( "password", JEncode.string model.pass )
-        , ( "login", JEncode.bool <| not model.createUser )
+        , ( "isLogin", JEncode.bool <| not model.createUser )
         ]
 
 jsonPost : Model -> Cmd Msg
 jsonPost model =
     Http.post
-        { url = rootUrl ++ "login/"
+        { url = rootUrl ++ "submit/"
         , body = Http.jsonBody <| encode model
         , expect = Http.expectString Response
         }
@@ -115,8 +115,9 @@ update msg model =
                     ({model|notif="That username is taken. Pick another"},Cmd.none)
                 Ok "accountCreated" ->
                     ({model|notif="Account created! Now go back and login."}, Cmd.none)
-                Ok _ ->
-                    ( model, load (rootUrl ++ "app/") )
+
+               Ok _ ->
+                    ( {model|notif="Login Successful!"}, Cmd.none )
 
                 Err error ->
                     ( errorGet model error, Cmd.none )

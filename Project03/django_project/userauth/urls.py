@@ -3,5 +3,6 @@ from . import views
 from django.http import HttpResponse
 
 urlpatterns = [
-    path('', views.test, name="userAuth-test"),
+    path('', views.login, name="userAuth-appLogin"),
+    path('submit/', views.submit, name="userAuth-infoSubmit")
 ]

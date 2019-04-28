@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from .models import UserData
 import json
 
@@ -19,14 +20,18 @@ def submit(request):
             login(request,user)
             return HttpResponse("LoggedIn")
         else:
-            return HttpResponse("LoginFailed")
+            return HttpResponse("denied")
     else:
-               
-    
+        test = User.objects.filter(username=user)
 
-def test(request):
-    html = "<html><body>TEST</body></html>"
-    return HttpResponse(html)
+        if test.count() == 0:
+            newUser = Userdata.objects.createUserData(user,passw,1000)
+            return HttpResponse("accountCreated")
+        else:
+            return HttpResponse("usernameTaken")
+
+def login(request):
+    return render(request, 'login.html')
 
 
 # Create your views here.
